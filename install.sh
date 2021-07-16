@@ -15,14 +15,14 @@ echo '*** Setting bird configs...'
 
 ip address
 
-read -p 'IPv4 Address: ' OWNIP
-read -p 'IPv6 Address: ' OWNIPv6
-read -p 'Confederation ASN: ' CONFEDERATIONAS
+read -p 'IPv4 Address: ' ownip
+read -p 'IPv6 Address: ' ownipv6
+read -p 'Confederation ASN: ' confederationas
 
 echo "define OWNAS           = 141776;
-define OWNIP           = $OWNIP;
-define OWNIPv6         = $OWNIPv6;
-define CONFEDERATIONAS = $CONFEDERATIONAS;
+define OWNIP           = $ownip;
+define OWNIPv6         = $ownipv6;
+define CONFEDERATIONAS = $confederationas;
 " > /etc/bird/variables.conf
 
 echo '*** Write crontab configs to /etc/crontab ...'

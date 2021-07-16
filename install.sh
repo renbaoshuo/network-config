@@ -1,0 +1,36 @@
+#!/bin/bash
+
+echo '*** Downloading config files...'
+
+wget -4 -O /tmp/bird.conf https://raw.githubusercontent.com/renbaoshuo/network-configs/master/bird.conf && mv /tmp/bird.conf /etc/bird/bird.conf
+wget -4 -O /tmp/filter.conf https://raw.githubusercontent.com/renbaoshuo/network-configs/master/filter.conf && mv /tmp/filter.conf /etc/bird/filter.conf
+wget -4 -O /tmp/ibgp.conf https://raw.githubusercontent.com/renbaoshuo/network-configs/master/ibgp.conf && mv /tmp/ibgp.conf /etc/bird/ibgp.conf
+
+touch /etc/bird/routes.conf
+
+echo '*** Setting bird configs...'
+
+ip address
+
+read -p 'IPv4 Address: ' OWNIP
+read -p 'IPv6 Address: ' OWNIPv6
+read -p 'Confederation ASN: ' CONFEDERATIONAS
+
+echo "define OWNAS           = 141776;
+define OWNIP           = $OWNIP;
+define OWNIPv6         = $OWNIPv6;
+define CONFEDERATIONAS = $CONFEDERATIONAS;
+" > /etc/bird/variables.conf
+
+echo '*** Write crontab configs to /etc/crontab ...'
+
+echo '0 * * * * wget -4 -O /tmp/bird.conf https://raw.githubusercontent.com/renbaoshuo/network-configs/master/bird.conf && mv /tmp/bird.conf /etc/bird/bird.conf && birdc c
+0 * * * * wget -4 -O /tmp/filter.conf https://raw.githubusercontent.com/renbaoshuo/network-configs/master/filter.conf && mv /tmp/filter.conf /etc/bird/filter.conf && birdc c
+0 * * * * wget -4 -O /tmp/ibgp.conf https://raw.githubusercontent.com/renbaoshuo/network-configs/master/ibgp.conf && mv /tmp/ibgp.conf /etc/bird/ibgp.conf && birdc c
+' >> /etc/crontab
+
+echo '*** Creating /etc/bird/peers/ folder...'
+
+mkdir -p /etc/bird/peers
+
+birdc c

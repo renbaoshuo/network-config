@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo '*** Backing old bird config file...'
+cp /etc/bird/bird.conf /etc/bird/bird.conf.bak
+
 echo '*** Downloading config files...'
 
 wget -4 -O /tmp/bird.conf https://raw.githubusercontent.com/renbaoshuo/network-configs/master/bird.conf && mv /tmp/bird.conf /etc/bird/bird.conf

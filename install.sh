@@ -34,6 +34,11 @@ echo '0 * * * * root wget -4 -O /tmp/bird.conf https://raw.githubusercontent.com
 systemctl restart cron
 systemctl status cron
 
+echo '*** Updating System Networking Configurations...'
+echo "net.ipv6.conf.default.forwarding=1" >> /etc/sysctl.conf
+echo "net.ipv6.conf.all.forwarding=1" >> /etc/sysctl.conf
+sysctl -p
+
 echo '*** Creating /etc/bird/peers/ folder...'
 
 mkdir -p /etc/bird/peers

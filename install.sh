@@ -9,20 +9,16 @@ wget -4 -O /tmp/bird.conf https://raw.githubusercontent.com/renbaoshuo/network-c
 wget -4 -O /tmp/filter.conf https://raw.githubusercontent.com/renbaoshuo/network-configs/master/filter.conf && mv /tmp/filter.conf /etc/bird/filter.conf
 wget -4 -O /tmp/ibgp.conf https://raw.githubusercontent.com/renbaoshuo/network-configs/master/ibgp.conf && mv /tmp/ibgp.conf /etc/bird/ibgp.conf
 
-touch /etc/bird/routes.conf
-
 echo '*** Setting bird configs...'
 
 ip address
 
-read -p 'IPv4 Address: ' ownip
-read -p 'IPv6 Address: ' ownipv6
-read -p 'Confederation ASN: ' confederationas
+read -p 'IPv4 Address: ' OWNIP
+read -p 'IPv6 Address: ' OWNIPv6
 
 echo "define OWNAS           = 141776;
-define OWNIP           = $ownip;
-define OWNIPv6         = $ownipv6;
-define CONFEDERATIONAS = $confederationas;
+define OWNIP           = $OWNIP;
+define OWNIPv6         = $OWNIPv6;
 " > /etc/bird/variables.conf
 
 echo '*** Write crontab configs to /etc/crontab ...'
@@ -39,8 +35,8 @@ echo "net.ipv6.conf.default.forwarding=1" >> /etc/sysctl.conf
 echo "net.ipv6.conf.all.forwarding=1" >> /etc/sysctl.conf
 sysctl -p
 
-echo '*** Creating /etc/bird/peers/ folder...'
-
+echo '*** Creating config folders...'
+mkdir -p /etc/bird/transits
 mkdir -p /etc/bird/peers
 
 birdc c

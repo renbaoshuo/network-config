@@ -14,5 +14,7 @@ for with_ll in $(cat /proc/net/if_inet6 | grep "^fe80" | tr -s ' ' | cut -d ' ' 
 		ping_rtt=$(echo "$ping_result" | tail -1 | cut -d ' ' -f 4 | cut -d '/' -f 2)
 		cost=$(echo | awk '{ printf "%0.0f\n", ('$ping_rtt' * 100 / (100 - '$ping_loss') * 10); }')
 	fi
-	echo 'define PTP_IF_COST__'$(printf $with_ll | tr -c [:alnum:] _ | tr [a-z] [A-Z])' = '$cost'; # loss '$ping_loss'%, rtt '$ping_rtt'ms'
+	echo "interface \"$with_ll\" {"
+	echo "cost $cost; # loss $ping_loss %, rtt $ping_rtt ms"
+	echo "};"
 done

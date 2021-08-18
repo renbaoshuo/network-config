@@ -16,7 +16,7 @@ define OWNIPv6         = $OWNIPv6;
 
 echo '*** Write crontab configs to /etc/crontab ...'
 echo '0 * * * * root git pull origin master:master --git-dir=/etc/bird/.git --work-tree=/etc/bird && birdc c' >> /etc/crontab
-echo '*/30 * * * * root /etc/bird/scripts/cron-generate-ptp-cost.sh' >> /etc/crontab
+echo '*/30 * * * * root /etc/bird/scripts/cron-generate-ptp-cost.sh && birdc c' >> /etc/crontab
 systemctl restart cron
 
 echo '*** Updating System Networking Configurations...'

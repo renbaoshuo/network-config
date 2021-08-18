@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # gathering all interfaces with IPv6 link-local address
 for with_ll in $(cat /proc/net/if_inet6 | grep "^fe80" | tr -s ' ' | cut -d ' ' -f 6 | sort -u); do

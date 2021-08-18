@@ -23,4 +23,4 @@ Endpoint   = $ENDPOINT
 AllowedIPs = 0.0.0.0/0, ::/0
 " > /etc/wireguard/bsnet-$NODE.conf
 
-systemctl enable --now wh-quick@bsnet-$NODE
+systemctl enable --now wg-quick@bsnet-$NODE

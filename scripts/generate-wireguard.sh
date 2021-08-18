@@ -13,7 +13,7 @@ echo "# Baoshuo DN42 Network $NODE Node
 [Interface]
 PrivateKey = $PRIVATE_KEY
 ListenPort = $LISTEN_PORT
-PostUp     = ip addr add $OWN_LINK_LOCAL dev %i
+PostUp     = ip addr add $OWN_LINK_LOCAL/64 dev %i
 PostUp     = ip addr add $OWN_IPV6/128 peer $NEIGHBOR_IPV6/128 dev %i
 Table      = off
 

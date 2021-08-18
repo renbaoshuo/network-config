@@ -28,9 +28,6 @@ echo '*** Creating config folders...'
 mkdir -p /etc/bird/transits
 mkdir -p /etc/bird/peers
 
-echo '*** Set mode +x to scripts...'
-find /etc/bird/scripts/*.sh -exec chmod +x {} \;
-
 echo '*** Reconfiguring BIRD...'
 birdc configure
 

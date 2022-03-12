@@ -1,4 +1,6 @@
-{bgp,ospf,static}/*
+/bgp/*
+/ospf/*
+/static/*
 
 !**/_*
 !**/.*

@@ -8,6 +8,7 @@ git clone https://github.com/renbaoshuo/network-configs.git /etc/bird
 
 echo '*** Write crontab configs to /etc/crontab ...'
 echo '0 * * * * root /etc/bird/scripts/update.sh' >> /etc/crontab
+echo '*/30 * * * * root /etc/bird/scripts/cron-generate-ptp-cost.sh && birdc configure' >> /etc/crontab
 systemctl restart cron
 
 echo '*** Updating System Networking Configurations...'

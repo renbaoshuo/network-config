@@ -1,5 +1,5 @@
 # Network Configs
 
-[AS141776](https://as141776.net)
+[AS141776](https://net.baoshuo.dev) 的网络配置。
 
-BGP Confederation ASN Range: from `AS4217760000` to `AS4217760256`
+配置修改自 [moesoha/as209306-bird-config](https://github.com/moesoha/as209306-bird-config)，在此表示感谢。

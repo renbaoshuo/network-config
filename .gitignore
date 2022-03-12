@@ -1,2 +1,4 @@
-peers
-transits
+{bgp,ospf,static}/*
+
+!**/_*
+!**/.*
